@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.fourthfloor.hack.MainCore;
@@ -43,8 +42,8 @@ public class MainMenuScreen implements Screen {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.down = patch;
         style.up = patch;
-        style.font = new BitmapFont(Gdx.files.internal("Arial2.fnt"), Gdx.files.internal("Arial2_0.png"), false);
-        style.fontColor = new Color(0.75f, 0.75f, 0.75f, 1.0f);
+        style.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
+        style.fontColor = Color.GRAY;
 
 
         employeesButton = new TextButton("Employees", style);
@@ -64,7 +63,6 @@ public class MainMenuScreen implements Screen {
         list.add(employerButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() * 3 / 16);
         list.row();
         list.add(settingsButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() * 3 / 16);
-        Gdx.app.log("Height", ""+(Gdx.graphics.getHeight()*3/16));
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
