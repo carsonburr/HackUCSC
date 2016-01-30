@@ -5,6 +5,6 @@ package com.fourthfloor.hack.utils;
  */
 public class Constants {
 
-    public static final int APP_WIDTH = 1280;
-    public static final int APP_HEIGHT = 800;
+    public static final int APP_WIDTH = 800;
+    public static final int APP_HEIGHT = 1280;
 }

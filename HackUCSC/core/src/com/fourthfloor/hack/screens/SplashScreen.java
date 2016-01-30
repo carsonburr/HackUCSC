@@ -11,8 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.fourthfloor.hack.MainCore;
 import com.fourthfloor.hack.utils.Constants;
 
 /**
@@ -20,11 +23,15 @@ import com.fourthfloor.hack.utils.Constants;
  */
 public class SplashScreen implements Screen{
 
+    final MainCore core;
+
     private Stage stage;
     private Table table;
     private Image image;
 
-    public SplashScreen() {
+    public SplashScreen(MainCore mainCore) {
+        this.core = mainCore;
+
         stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         table = new Table();
         stage.addActor(table);
@@ -37,6 +44,14 @@ public class SplashScreen implements Screen{
 
         table.setDebug(true);
         image.setDebug(true);
+
+        Timer.schedule(new Task(){
+            @Override
+            public void run() {
+                core.setScreen(new MainMenuScreen(core));
+                dispose();
+            }
+        }, 1.0f);
     }
 
     @Override
