@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class Database {
 
-    ArrayList<Employee> Database;
+    ArrayList<Employee> database = new ArrayList<Employee>();
+
+    //get employee method
 
 }
