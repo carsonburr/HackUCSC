@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.fourthfloor.hack.MainCore;
@@ -53,14 +55,19 @@ public class Password implements Screen {
         txtInput.setMessageText("Type in the Employer Password Here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
-        Gdx.app.log("y Postition",txtInput.getY());
-        //list.add((enterButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight()/2 + );)
-        String test = txtInput.getText();
+        list.add(enterButton);
 
-        if(test.equals("1234")){
-            core.setScreen(new EmployerScreen(core));
-            dispose();
-        }
+        enterButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                String text = txtInput.getText();
+                if(text.equals("1234")){
+                    core.setScreen(new EmployerScreen(core));
+                    dispose();
+                }
+            }
+        });
+        String test = txtInput.getText();
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
