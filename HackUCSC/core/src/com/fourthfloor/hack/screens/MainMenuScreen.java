@@ -55,6 +55,13 @@ public class MainMenuScreen implements Screen {
         employerButton = new TextButton("Employer", style);
         settingsButton = new TextButton("Settings", style);
 
+        employeesButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new EmployeeScreen(core));
+                dispose();
+            }
+        });
 
         employerButton.addListener(new ClickListener() {
             @Override
