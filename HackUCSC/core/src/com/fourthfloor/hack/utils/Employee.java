@@ -104,7 +104,7 @@ public class Employee {
         double f = Double.parseDouble(hours.get(hours.size()-3));
         double g = Double.parseDouble(hours.get(hours.size()-2));
         double h = Double.parseDouble(hours.get(hours.size()-1));
-        hwd = a-b+c-d+e-f+g-h;
+        hwd = b-a+d-c+f-e+h-g;
         return hwd;
     }
     //returns name of employee
@@ -174,8 +174,8 @@ public class Employee {
         double e = stringToDouble(hours.get(hours.size() - 4));
         double f = stringToDouble(hours.get(hours.size() - 3));
         double g = stringToDouble(hours.get(hours.size() - 2));
-        double h = stringToDouble(hours.get(hours.size()-1));
-        double t = a-b+c-d+e-f+g-h;
+        double h = stringToDouble(hours.get(hours.size() - 1));
+        double t = b-a+d-c+f-e+h-g;
         hr+=t;
         shr = hr/30;
         if(shr > shrMax){
