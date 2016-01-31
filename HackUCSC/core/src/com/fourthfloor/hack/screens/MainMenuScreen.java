@@ -33,7 +33,6 @@ public class MainMenuScreen implements Screen {
     TextButton employeesButton;
     TextButton statisticsButton;
     TextButton employerButton;
-    TextButton settingsButton;
 
     public MainMenuScreen(MainCore mainCore) {
 
@@ -66,7 +65,6 @@ public class MainMenuScreen implements Screen {
         employeesButton = new TextButton("Employees", style);
         statisticsButton = new TextButton("Statistics", style);
         employerButton = new TextButton("Employer", style);
-        settingsButton = new TextButton("Settings", style);
 
         employeesButton.addListener(new ClickListener() {
             @Override
@@ -102,8 +100,8 @@ public class MainMenuScreen implements Screen {
         list.add(statisticsButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() * 3 / 16);
         list.row();
         list.add(employerButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() * 3 / 16);
-        list.row();
-        list.add(settingsButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() * 3 / 16);
+
+        list.background(patch);
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);

@@ -69,7 +69,7 @@ public class changenwd implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String text = txtInput.getText();
-                Double newwdh = Double.parseDouble(text);
+                double newwdh = Double.parseDouble(text);
                 for (int i = 0; i < Database.database.size(); i++) {
                     if (FindEmployeeAskScreen.EmployeeName.equals(Database.database.get(i).getName())) {
                         Database.database.get(i).setNWWH(newwdh);

@@ -11,27 +11,27 @@ public class Employee {
 
     public ArrayList<String> hours;
 
-    private int salary;
+    private double salary;
     private String name;
     private String benefits;
     //vacation days
     public static int vD = 0;
     private Sprite pic;
     //total hours
-    private int hr;
+    private double hr;
     //sick day hours
-    private int shr;
+    private double shr;
     //can be polished** @DJWhiteMocha
     //max sick day hours
-    public static int shrMax = 900;
+    public static double shrMax = 900;
     //normal work hours
     public static double nwd;
     //TODO hours until overtime  **change
-    public int ovt = 41;
+    public static double ovt = 41;
     //hours worked
-    private int hw;
+    private double hw;
     //hours worked that day
-    public int hwd;
+    public double hwd;
     //arraylist to determine popup
     public ArrayList<String> popup = new ArrayList<String>();
 
@@ -51,7 +51,7 @@ public class Employee {
     }
 
     //salary,name,benefits, picture
-    public Employee(int x, String y, String k, String p){
+    public Employee(double x, String y, String k, String p){
         salary = x;
         name = y.toUpperCase();
         benefits = k;
@@ -62,30 +62,26 @@ public class Employee {
         pic = new Sprite(new Texture(p));
     }
 
-    //get hours worked
+    //get total hours worked
     public double getHours(){
-        double a = Double.parseDouble(hours.get(7));
-        double b = Double.parseDouble(hours.get(6));
-        double c = Double.parseDouble(hours.get(5));
-        double d = Double.parseDouble(hours.get(4));
-        double e = Double.parseDouble(hours.get(3));
-        double f = Double.parseDouble(hours.get(2));
-        double g = Double.parseDouble(hours.get(1));
-        double h = Double.parseDouble(hours.get(0));
-        double t = a-b+c-d+e-f+g-h;
-        hw = (int)Math.ceil(t);
-        return hw;
+        for(int i = 0; i<hours.size(); i++){
+            Double e = Double.parseDouble(hours.get(i));
+            double k = 0;
+            k += e;
+            hr = k;
+        }
+        return hr;
     }
     //sets the normal work week hours
     public void setNWWH(double r){
         nwd = r;
     }
     //sets the maximum number of sick day hours
-    public void setSDH(int f){
+    public void setSDH(double f){
         shrMax = f;
     }
     //sets the salary of the employee
-    public void setSalary(int e){
+    public void setSalary(double e){
         salary = e;
     }
     //adds a popup message to the arraylist popups
@@ -94,15 +90,15 @@ public class Employee {
     }
     //get hours worked that day
     public double getHWD(){
-        double a = Double.parseDouble(hours.get(7));
-        double b = Double.parseDouble(hours.get(6));
-        double c = Double.parseDouble(hours.get(5));
-        double d = Double.parseDouble(hours.get(4));
-        double e = Double.parseDouble(hours.get(3));
-        double f = Double.parseDouble(hours.get(2));
-        double g = Double.parseDouble(hours.get(1));
-        double h = Double.parseDouble(hours.get(0));
-        hw = (int)Math.ceil(a-b+c-d+e-f+g-h);
+        double a = Double.parseDouble(hours.get(hours.size()-8));
+        double b = Double.parseDouble(hours.get(hours.size()-7));
+        double c = Double.parseDouble(hours.get(hours.size()-6));
+        double d = Double.parseDouble(hours.get(hours.size()-5));
+        double e = Double.parseDouble(hours.get(hours.size()-4));
+        double f = Double.parseDouble(hours.get(hours.size()-3));
+        double g = Double.parseDouble(hours.get(hours.size()-2));
+        double h = Double.parseDouble(hours.get(hours.size()-1));
+        hwd = a-b+c-d+e-f+g-h;
         return hwd;
     }
     //returns name of employee
@@ -124,7 +120,10 @@ public class Employee {
     //adds the clock in and clock out times for the employee
     public void clock(){
         Date date = new Date(TimeUtils.millis());
-        hours.add(0,date.toString().split(" ")[3]);
+        hours.add(hours.size(),date.toString().split(" ")[3]);
+        if(hours.size() %8 == 0){
+            signOut();
+        }
     }
     //gets the sick hours of the employee
     public double getSickHours(){
@@ -184,10 +183,6 @@ public class Employee {
     //returns the picture of employee
     public Sprite getPic(){
         return pic;
-    }
-    //change normal work day hours
-    public void changeNWD(double e){
-        nwd = e;
     }
     //get normal work day hours
     public double getOvt(){

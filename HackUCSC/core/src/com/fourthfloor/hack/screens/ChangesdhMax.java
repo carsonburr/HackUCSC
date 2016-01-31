@@ -69,7 +69,7 @@ public class ChangesdhMax implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String text = txtInput.getText();
-                int newsdh = Integer.parseInt(text);
+                double newsdh = Double.parseDouble(text);
                 for (int i = 0; i < Database.database.size(); i++) {
                     if (FindEmployeeAskScreen.EmployeeName.equals(Database.database.get(i).getName())) {
                         Database.database.get(i).setSDH(newsdh);

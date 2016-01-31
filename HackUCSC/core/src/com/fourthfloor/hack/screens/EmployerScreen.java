@@ -73,7 +73,7 @@ public class EmployerScreen implements Screen {
         list.row();
         list.add(changesickdayhourmax).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
         list.row();
-        list.add(changenwd).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
+        list.add(changenwd).top().left().width(Gdx.graphics.getWidth() / 2).height(Gdx.graphics.getHeight() / 10);
 
 
 

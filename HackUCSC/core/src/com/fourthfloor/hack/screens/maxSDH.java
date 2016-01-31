@@ -63,7 +63,7 @@ public class maxSDH implements Screen {
                 String text = txtInput.getText();
                 Employee.shrMax = Integer.parseInt(text);
                 for(int i = 0; i<Database.database.size();i++) {
-                    Database.database.get(i).setSDH(Integer.parseInt(text));
+                    Database.database.get(i).setSDH(Double.parseDouble(text));
                     Database.database.get(i).addPopup("Your maximum sick day hours have been changed to: " + Employee.shrMax + " hours.");
                 }
                 core.setScreen(new EmployerScreen(core));
