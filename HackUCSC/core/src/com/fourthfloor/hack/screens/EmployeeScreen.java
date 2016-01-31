@@ -27,6 +27,7 @@ import com.fourthfloor.hack.MainCore;
 import com.fourthfloor.hack.utils.Constants;
 import com.fourthfloor.hack.utils.Database;
 import com.fourthfloor.hack.utils.Employee;
+import com.fourthfloor.hack.utils.Statistics;
 
 import java.util.ArrayList;
 
@@ -45,6 +46,7 @@ public class EmployeeScreen implements Screen {
     private Table innerTable;
     private ArrayList<Table> listItems;
     private ArrayList<ArrayList<Actor>> widgets;
+    private int nextStat = 0;
 
     public EmployeeScreen(MainCore mainCore) {
         core = mainCore;
@@ -74,6 +76,10 @@ public class EmployeeScreen implements Screen {
         labelStyle.font = new BitmapFont(Gdx.files.internal("Arial_small.fnt"), Gdx.files.internal("Arial_small_0.png"), false);
         labelStyle.fontColor = Color.DARK_GRAY;
 
+        Label.LabelStyle labelBigStyle = new Label.LabelStyle();
+        labelBigStyle.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
+        labelBigStyle.fontColor = Color.DARK_GRAY;
+
         for (int i = 0; i < Database.database.size(); i++) {
             listItems.add(i, new Table());
             widgets.add(i, new ArrayList<Actor>());
@@ -83,7 +89,7 @@ public class EmployeeScreen implements Screen {
             listItems.get(i).add(widgets.get(i).get(currWidget)).align(Align.topLeft).width(Constants.PROFILE_PIC_WIDTH).height(Constants.PROFILE_PIC_HEIGHT).pad(10).left();
 
             currWidget++;
-            widgets.get(i).add(currWidget, new Label(Database.database.get(i).getName(), labelStyle));
+            widgets.get(i).add(currWidget, new Label(Database.database.get(i).getName(), labelBigStyle));
             listItems.get(i).add(widgets.get(i).get(currWidget)).height(Constants.PROFILE_PIC_HEIGHT).pad(10).left();
 
             currWidget++;
@@ -103,10 +109,11 @@ public class EmployeeScreen implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
                     Database.database.get(j).clock();
 
+                    int numStats = 2;
+
                     if (!Database.database.get(j).popup.isEmpty()) {
-                        if (widgets.get(j).get(curr-1) instanceof Label) {
-                            ((Label) widgets.get(j).get(curr - 1)).setText(Database.database.get(j).popup.get(0));
-                        }
+                        changeText(j, curr-1, Database.database.get(j).popup.get(0));
+
                         Database.database.get(j).popup.remove(0);
                         for (int i = 1; i < Database.database.get(j).popup.size(); i++) {
                             Database.database.get(j).popup.set(i-1, Database.database.get(j).popup.get(i));
@@ -114,20 +121,24 @@ public class EmployeeScreen implements Screen {
                                 Database.database.get(j).popup.remove(i);
                             }
                         }
+                    } else if (nextStat == 0) {
+                        changeText(j, curr-1, "Your salary is "+Math.round(100 * Database.database.get(j).getSalary() / Statistics.avgSal)+"% \nof the average salary");
+                        nextStat++;
+                        nextStat %= numStats;
+                    } else if (nextStat == 1) {
+                        changeText(j, curr-1, "Your total hours are "+Math.round(100*Database.database.get(j).getHours()/Statistics.avgTotHours)+"% \nof the average employee's total hours");
+                        nextStat++;
+                        nextStat %= numStats;
                     } else {
-                        if (widgets.get(j).get(curr-1) instanceof Label) {
-                            ((Label) widgets.get(j).get(curr - 1)).setText("No text to show");
-                        }
+                        changeText(j, curr-1, "No text to show");
                     }
 
                     Timer.schedule(new Timer.Task() {
                         @Override
                         public void run() {
-                            if (widgets.get(j).get(curr-1) instanceof Label) {
-                                ((Label) widgets.get(j).get(curr - 1)).setText("");
-                            }
+                            changeText(j, curr-1, "");
                         }
-                    }, 2.0f);
+                    }, 3.0f);
                 }
             });
 
@@ -186,5 +197,11 @@ public class EmployeeScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+    }
+
+    private void changeText(int x, int y, String text) {
+        if (widgets.get(x).get(y) instanceof Label) {
+            ((Label) widgets.get(x).get(y)).setText(text);
+        }
     }
 }

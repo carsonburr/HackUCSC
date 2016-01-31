@@ -53,6 +53,7 @@ public class StatisticsScreen implements Screen {
         stage = new Stage();
         list = new Table();
         setStatistics();
+        setLabels();
         backArrow = new Button(new SpriteDrawable(new Sprite(new Texture("BackArrow.png"))));
         titleBarOptions = new Table();
 
@@ -142,7 +143,7 @@ public class StatisticsScreen implements Screen {
     }
 
     //Get average salary of all employees
-    public void getAvgSal() {
+    public static void getAvgSal() {
         int length = Database.database.size();
         double totalSal = 0;
         for (int i = 0; i < length; i++)
@@ -150,7 +151,7 @@ public class StatisticsScreen implements Screen {
         Statistics.avgSal = (totalSal / (length));
     }
 
-    public void getTotalHours() {
+    public static void getTotalHours() {
         int length = Database.database.size();
         double totalHours = 0;
         for (int i = 0; i < length; i++)
@@ -159,7 +160,7 @@ public class StatisticsScreen implements Screen {
         Statistics.totalHours = totalHours;
     }
 
-    public void getAvgTotHours() {
+    public static void getAvgTotHours() {
         for(int i = 0; i<Database.database.size();i++){
             Database.database.get(i).HE();
         }
@@ -173,7 +174,7 @@ public class StatisticsScreen implements Screen {
         }
     }
 
-    public void getTotPrevDaysHours() {
+    public static void getTotPrevDaysHours() {
         if (Employee.exist) {
             int length = Database.database.size();
             double hours = 0;
@@ -191,12 +192,11 @@ public class StatisticsScreen implements Screen {
         totPrevHoursWorked = "Total hours worked in previous day: "+ Statistics.totPrevHoursWorked;
     }
 
-    public void setStatistics() {
+    public static void setStatistics() {
         getAvgSal();
         getAvgTotHours();
         getTotalHours();
         getTotPrevDaysHours();
-        setLabels();
     }
 }
 

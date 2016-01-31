@@ -130,11 +130,18 @@ public class Employee {
         }
         return ovt;
     }
+
+    public void clock(String time) {
+        hours.add(hours.size(),time);
+        if(hours.size() % 2 == 0){
+            signOut();
+        }
+    }
     //adds the clock in and clock out times for the employee
     public void clock(){
         Date date = new Date(TimeUtils.millis());
         hours.add(hours.size(),date.toString().split(" ")[3]);
-        if(hours.size() %8 == 0){
+        if(hours.size() % 2 == 0){
             signOut();
         }
     }
@@ -174,15 +181,9 @@ public class Employee {
     //TODO NEEDS TO BE CALLED AFTER LAST CLOCK OUT FOR EACH EMPLOYEE
     //adds hours worked to the employee, then updates the sick day hours of the employee
     public void signOut(){
-        double a = stringToDouble(hours.get(hours.size() - 8));
-        double b = stringToDouble(hours.get(hours.size() - 7));
-        double c = stringToDouble(hours.get(hours.size() - 6));
-        double d = stringToDouble(hours.get(hours.size() - 5));
-        double e = stringToDouble(hours.get(hours.size() - 4));
-        double f = stringToDouble(hours.get(hours.size() - 3));
-        double g = stringToDouble(hours.get(hours.size() - 2));
-        double h = stringToDouble(hours.get(hours.size() - 1));
-        double t = b-a+d-c+f-e+h-g;
+        double a = stringToDouble(hours.get(hours.size() - 2));
+        double b = stringToDouble(hours.get(hours.size() - 1));
+        double t = b-a;
         hr+=t;
         shr = hr/30;
         if(shr > shrMax){

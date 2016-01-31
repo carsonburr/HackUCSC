@@ -38,6 +38,8 @@ public class MainMenuScreen implements Screen {
 
         this.core = mainCore;
 
+        StatisticsScreen.setStatistics();
+
         stage = new Stage();
         logo = new Image(new Texture("test.png"));
         list = new Table();

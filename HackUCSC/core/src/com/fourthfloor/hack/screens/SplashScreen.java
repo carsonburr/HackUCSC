@@ -28,10 +28,18 @@ public class SplashScreen implements Screen{
     public SplashScreen(MainCore mainCore) {
         this.core = mainCore;
 
-        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Thomas", "not as many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Kyle", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Milla", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(99999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(60000, "Thomas", "not as many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(50000, "Kyle", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(70000, "Milla", "so many things", "PersonPlaceholder.png"));
+        Database.database.get(0).clock("00:00:00");
+        Database.database.get(1).clock("00:00:00");
+        Database.database.get(2).clock("00:00:00");
+        Database.database.get(3).clock("00:00:00");
+        Database.database.get(0).clock("16:00:00");
+        Database.database.get(1).clock("23:00:00");
+        Database.database.get(2).clock("04:00:00");
+        Database.database.get(3).clock("11:00:00");
 
         stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         table = new Table();
