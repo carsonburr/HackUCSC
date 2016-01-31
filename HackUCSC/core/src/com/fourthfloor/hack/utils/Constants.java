@@ -7,4 +7,7 @@ public class Constants {
 
     public static final int APP_WIDTH = 800;
     public static final int APP_HEIGHT = 1280;
+
+    public static final int PROFILE_PIC_WIDTH = 96;
+    public static final int PROFILE_PIC_HEIGHT = 96;
 }
