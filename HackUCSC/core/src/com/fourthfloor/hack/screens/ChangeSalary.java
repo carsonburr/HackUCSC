@@ -65,7 +65,6 @@ public class ChangeSalary implements Screen {
         list.add(mainmenu);
 
 
-
         enterButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -78,6 +77,22 @@ public class ChangeSalary implements Screen {
                     }
                 }
                 core.setScreen(new EmployerScreen(core));
+                dispose();
+            }
+        });
+
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new EmployeeFound(core));
+                dispose();
+            }
+        });
+
+        mainmenu.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new MainMenuScreen(core));
                 dispose();
             }
         });
