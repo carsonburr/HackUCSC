@@ -147,7 +147,7 @@ public class StatisticsScreen implements Screen {
         double totalSal = 0;
         for (int i = 0; i < length; i++)
             totalSal = totalSal + Database.database.get(i).getSalary();
-        Statistics.avgSal = (totalSal / (length - 1));
+        Statistics.avgSal = (totalSal / (length));
     }
 
     public void getTotalHours() {
@@ -166,7 +166,7 @@ public class StatisticsScreen implements Screen {
             for (int i = 0; i < length; i++)
                 AvgTotHours = AvgTotHours + Database.database.get(i).getHours();
 
-            Statistics.avgTotHours = (AvgTotHours / (length - 1));
+            Statistics.avgTotHours = (AvgTotHours / (length));
         }
     }
 
@@ -177,7 +177,7 @@ public class StatisticsScreen implements Screen {
             for (int i = 0; i < length; i++)
                 hours = hours + Database.database.get(i).getHWD();
 
-            Statistics.totPrevHoursWorked = (hours / (length - 1));
+            Statistics.totPrevHoursWorked = (hours / (length));
         }
     }
     public void setLabels(){
