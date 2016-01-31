@@ -52,7 +52,7 @@ public class StatisticsScreen implements Screen {
         this.core = mainCore;
         stage = new Stage();
         list = new Table();
-
+        setStatistics();
         backArrow = new Button(new SpriteDrawable(new Sprite(new Texture("BackArrow.png"))));
         titleBarOptions = new Table();
 
@@ -101,7 +101,7 @@ public class StatisticsScreen implements Screen {
     }
 
 
-    boolean wtf = setStatistics();
+
 
 
     @Override
@@ -142,26 +142,24 @@ public class StatisticsScreen implements Screen {
     }
 
     //Get average salary of all employees
-    public boolean getAvgSal() {
+    public void getAvgSal() {
         int length = Database.database.size();
         double totalSal = 0;
         for (int i = 0; i < length; i++)
             totalSal = totalSal + Database.database.get(i).getSalary();
         Statistics.avgSal = (totalSal / (length - 1));
-        return true;
     }
 
-    public boolean getTotalHours() {
+    public void getTotalHours() {
         int length = Database.database.size();
         double totalHours = 0;
         for (int i = 0; i < length; i++)
             totalHours = totalHours + Database.database.get(i).getHours();
 
         Statistics.totalHours = totalHours;
-        return true;
     }
 
-    public boolean getAvgTotHours() {
+    public void getAvgTotHours() {
         if (Employee.exist) {
                 int length = Database.database.size();
             double AvgTotHours = 0;
@@ -169,12 +167,10 @@ public class StatisticsScreen implements Screen {
                 AvgTotHours = AvgTotHours + Database.database.get(i).getHours();
 
             Statistics.avgTotHours = (AvgTotHours / (length - 1));
-            return true;
         }
-        else return false;
     }
 
-    public boolean getTotPrevDaysHours() {
+    public void getTotPrevDaysHours() {
         if (Employee.exist) {
             int length = Database.database.size();
             double hours = 0;
@@ -182,25 +178,21 @@ public class StatisticsScreen implements Screen {
                 hours = hours + Database.database.get(i).getHWD();
 
             Statistics.totPrevHoursWorked = (hours / (length - 1));
-            return true;
         }
-        else return false;
     }
-    public boolean setLabels(){
+    public void setLabels(){
         avgSal = "Average employee salary: " + Statistics.avgSal;
         totalHours = "Total hours worked in business: " + Statistics.totalHours;
         avgTotHours = "Average hours worked by employee base: " + Statistics.avgTotHours;
         totPrevHoursWorked = "Total hours worked in previous day: "+ Statistics.totPrevHoursWorked;
-        return true;
     }
 
-    public boolean setStatistics() {
+    public void setStatistics() {
         getAvgSal();
         getAvgTotHours();
         getTotalHours();
         getTotPrevDaysHours();
         setLabels();
-        return true;
     }
 }
 
