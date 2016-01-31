@@ -77,7 +77,6 @@ public class EmployeeFound implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 core.setScreen(new FindEmployeeAskScreen(core));
                 dispose();
-
             }
         });
 

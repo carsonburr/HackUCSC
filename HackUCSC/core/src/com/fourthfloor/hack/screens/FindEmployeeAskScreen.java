@@ -70,25 +70,11 @@ public class FindEmployeeAskScreen implements Screen {
                 for (int i = 0; i < Database.database.size(); i++) {
                     if (text.toUpperCase().equals(Database.database.get(i).getName())) {
                         EmployeeName = Database.database.get(i).getName();
+                        i = 99;
                         core.setScreen(new EmployeeFound(core));
                         dispose();
                     }
                 }
-                NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
-
-                TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
-                style.down = patch;
-                style.up = patch;
-                style.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
-                style.fontColor = Color.GRAY;
-
-                employeeFound = new TextButton("Employee not found.", style);
-                list.row();
-                list.add(employeeFound).top().left().width(Gdx.graphics.getWidth()).height(100);
-                list.row();
-
-                Gdx.input.setInputProcessor(stage);
-                stage.addActor(list);
             }
         });
 
@@ -142,7 +128,7 @@ public class FindEmployeeAskScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }
 

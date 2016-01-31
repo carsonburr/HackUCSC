@@ -44,28 +44,28 @@ public class EmployerScreen implements Screen {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.down = patch;
         style.up = patch;
-        style.font = new BitmapFont(Gdx.files.internal("Arial_small.fnt"), Gdx.files.internal("Arial_small_0.png"), false);
+        style.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
         style.fontColor = Color.GRAY;
 
         findEmployeeButton = new TextButton("Find Employee", style);
         addEmployeeButton = new TextButton("Add Employee", style);
         back =  new TextButton("Back to main menu", style);
-        maxsixkdayhours = new TextButton("Change maximum sick day hours.",style);
+        maxsixkdayhours = new TextButton("Change maximum sick day hours",style);
         setVD = new TextButton("Set number of vacation days", style);
-        changenwd = new TextButton("Change the normal work hours in a week.",style);
+        changenwd = new TextButton("Change the normal work hours in a week",style);
 
         list.setFillParent(true);
-        list.add(findEmployeeButton).top().left().width(Gdx.graphics.getWidth() / 6).height(Gdx.graphics.getHeight() / 10);
+        list.add(findEmployeeButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
         list.row();
-        list.add(addEmployeeButton).top().left().width(Gdx.graphics.getWidth() / 6).height(Gdx.graphics.getHeight() / 10);
+        list.add(addEmployeeButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
         list.row();
-        list.add(back).top().left().width(Gdx.graphics.getWidth() / 6).height(Gdx.graphics.getHeight() / 10);
+        list.add(back).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
         list.row();
-        list.add(maxsixkdayhours).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
+        list.add(maxsixkdayhours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
         list.row();
-        list.add(setVD).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
+        list.add(setVD).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
         list.row();
-        list.add(changenwd).top().left().width(Gdx.graphics.getWidth() / 2).height(Gdx.graphics.getHeight() / 10);
+        list.add(changenwd).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
 
 
 
@@ -161,7 +161,7 @@ public class EmployerScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
 }
