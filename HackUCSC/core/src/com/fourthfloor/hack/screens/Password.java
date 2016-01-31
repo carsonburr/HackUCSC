@@ -27,6 +27,7 @@ public class Password implements Screen {
     TextField txtInput;
     Table list;
     TextButton enterButton;
+    TextButton back;
 
     public Password (MainCore mainCore) {
 
@@ -50,24 +51,34 @@ public class Password implements Screen {
         style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"),1,1,1,1));
 
         enterButton = new TextButton("Enter", style);
+        back = new TextButton("Back", style);
 
         txtInput = new TextField("", style1);
         txtInput.setMessageText("Type in the Employer Password Here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enterButton);
+        list.row();
+        list.add(back);
 
         enterButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String text = txtInput.getText();
-                if(text.equals("1234")){
+                if (text.equals("1234")) {
                     core.setScreen(new EmployerScreen(core));
                     dispose();
                 }
             }
         });
-        String test = txtInput.getText();
+
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                    core.setScreen(new MainMenuScreen(core));
+                    dispose();
+            }
+        });
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);

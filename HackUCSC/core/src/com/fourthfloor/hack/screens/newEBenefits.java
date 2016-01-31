@@ -25,6 +25,8 @@ public class newEBenefits implements Screen {
     TextField txtInput;
     Table list;
     TextButton enterButton;
+    TextButton back;
+    TextButton mainmenu;
     public static String newEBenefits;
 
     public newEBenefits (MainCore mainCore) {
@@ -48,11 +50,18 @@ public class newEBenefits implements Screen {
         style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"),1,1,1,1));
 
         enterButton = new TextButton("Enter", style);
+        back = new TextButton("Back",style);
+        mainmenu = new TextButton("Main menu",style);
+
         txtInput = new TextField("", style1);
         txtInput.setMessageText("Type in the Employee's benefits Here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enterButton);
+        list.row();
+        list.add(back);
+        list.row();
+        list.add(mainmenu);
 
         enterButton.addListener(new ClickListener() {
             @Override
@@ -62,6 +71,24 @@ public class newEBenefits implements Screen {
                 dispose();
             }
         });
+
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new newESalary(core));
+                dispose();
+            }
+        });
+
+        mainmenu.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new MainMenuScreen(core));
+                dispose();
+            }
+        });
+
+
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);

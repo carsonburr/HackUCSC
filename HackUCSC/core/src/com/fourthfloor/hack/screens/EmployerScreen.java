@@ -84,7 +84,6 @@ public class EmployerScreen implements Screen {
             }
         });
 
-
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
     }

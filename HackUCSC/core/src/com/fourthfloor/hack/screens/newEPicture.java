@@ -27,6 +27,8 @@ public class newEPicture implements Screen {
     TextField txtInput;
     Table list;
     TextButton enterButton;
+    TextButton back;
+    TextButton mainmenu;
     public static String newEPicture;
 
     public newEPicture (MainCore mainCore) {
@@ -50,17 +52,41 @@ public class newEPicture implements Screen {
         style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"),1,1,1,1));
 
         enterButton = new TextButton("Enter", style);
+        back = new TextButton("back", style);
+        mainmenu = new TextButton("Main menu", style);
+
+
         txtInput = new TextField("", style1);
         txtInput.setMessageText("Type in the Employee's picture path here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enterButton);
+        list.row();
+        list.add(back);
+        list.row();
+        list.add(mainmenu);
 
         enterButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                newEPicture = txtInput.getText()+ ".png";
+                newEPicture = txtInput.getText() + ".png";
                 Database.database.add(new Employee(newESalary.newESalary, newEName.newEName, newEBenefits.newEBenefits, newEPicture));
+                core.setScreen(new MainMenuScreen(core));
+                dispose();
+            }
+        });
+
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+               core.setScreen(new newEBenefits(core));
+                dispose();
+            }
+        });
+
+        mainmenu.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
                 core.setScreen(new MainMenuScreen(core));
                 dispose();
             }

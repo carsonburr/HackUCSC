@@ -25,6 +25,7 @@ public class newEName implements Screen {
     TextField txtInput;
     Table list;
     TextButton enterButton;
+    TextButton back;
     public static String newEName;
 
     public newEName (MainCore mainCore) {
@@ -35,6 +36,7 @@ public class newEName implements Screen {
         NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+
         style.down = patch;
         style.up = patch;
         style.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
@@ -48,11 +50,15 @@ public class newEName implements Screen {
         style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"),1,1,1,1));
 
         enterButton = new TextButton("Enter", style);
+        back = new TextButton("back",style);
+
         txtInput = new TextField("", style1);
         txtInput.setMessageText("Type in the Employee's name Here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enterButton);
+        list.row();
+        list.add(back);
 
         enterButton.addListener(new ClickListener() {
             @Override
@@ -63,6 +69,15 @@ public class newEName implements Screen {
                 dispose();
             }
         });
+
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new MainMenuScreen(core));
+                dispose();
+            }
+        });
+
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
