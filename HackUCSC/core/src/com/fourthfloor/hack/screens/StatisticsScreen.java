@@ -7,11 +7,18 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.fourthfloor.hack.MainCore;
 import com.fourthfloor.hack.utils.Database;
@@ -19,6 +26,7 @@ import com.fourthfloor.hack.utils.Employee;
 import com.fourthfloor.hack.utils.Statistics;
 
 import java.awt.Label;
+import java.util.ArrayList;
 
 /**
  * Created by Thomas on 1/30/2016.
@@ -29,6 +37,8 @@ public class StatisticsScreen implements Screen {
 
     Stage stage;
     Table list;
+    private Button backArrow;
+    private Table titleBarOptions;
     public String avgSal;
     public String totalHours;
     public String avgTotHours;
@@ -42,6 +52,12 @@ public class StatisticsScreen implements Screen {
         this.core = mainCore;
         stage = new Stage();
         list = new Table();
+
+        backArrow = new Button(new SpriteDrawable(new Sprite(new Texture("BackArrow.png"))));
+        titleBarOptions = new Table();
+
+
+
 
         NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
@@ -60,17 +76,30 @@ public class StatisticsScreen implements Screen {
         list.align(Align.topLeft);
         list.setFillParent(true);
 
-        list.add(labTotPrevHoursWorked).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 4);
+        titleBarOptions.add(backArrow).height(60).width(60).expand().left().pad(20);
+        titleBarOptions.setBackground(new NinePatchDrawable(new NinePatch(new Texture("TitleBar.png"), 1, 1, 1, 1)));
+        list.add(titleBarOptions).width(Gdx.graphics.getWidth()).height(100);
         list.row();
-        list.add(labAvgSal).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 4);
+        list.add(labTotPrevHoursWorked).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / (5));
         list.row();
-        list.add(labAvgTotHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 4);
+        list.add(labAvgSal).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / (5));
         list.row();
-        list.add(labTotalHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() /4);
+        list.add(labAvgTotHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / (5));
+        list.row();
+        list.add(labTotalHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / (5));
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
+
+        backArrow.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new MainMenuScreen(core));
+                dispose();
+            }
+        });
     }
+
 
     boolean wtf = setStatistics();
 
@@ -128,7 +157,7 @@ public class StatisticsScreen implements Screen {
         for (int i = 0; i < length; i++)
             totalHours = totalHours + Database.database.get(i).getHours();
 
-        Statistics.totalHours = (totalHours / (length - 1));
+        Statistics.totalHours = totalHours;
         return true;
     }
 
