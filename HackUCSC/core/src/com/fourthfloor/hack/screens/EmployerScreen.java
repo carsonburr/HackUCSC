@@ -27,6 +27,7 @@ public class EmployerScreen implements Screen {
     Table list;
     TextButton findEmployeeButton;
     TextButton addEmployeeButton;
+    TextButton back;
 
     public EmployerScreen(MainCore mainCore){
         PW = "1234";
@@ -45,21 +46,35 @@ public class EmployerScreen implements Screen {
 
         findEmployeeButton = new TextButton("Find Employee", style);
         addEmployeeButton = new TextButton("Add Employee", style);
+        back =  new TextButton("Back to main menu", style);
 
         list.setFillParent(true);
         list.add(findEmployeeButton).top().left().width(Gdx.graphics.getWidth() / 6).height(Gdx.graphics.getHeight() / 10);
         list.row();
-        list.add(addEmployeeButton).top().left().width(Gdx.graphics.getWidth() / 6 + (Gdx.graphics.getWidth()/6)).height(Gdx.graphics.getHeight() / 10);
+        list.add(addEmployeeButton).top().left().width(Gdx.graphics.getWidth() / 6).height(Gdx.graphics.getHeight() / 10);
         list.row();
+        list.add(back).top().left().width(Gdx.graphics.getWidth() / 6).height(Gdx.graphics.getHeight() / 10);
+
+
 
         findEmployeeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                    core.setScreen(new FindEmployeeAskScreen(core));
-                    dispose();
+                core.setScreen(new FindEmployeeAskScreen(core));
+                dispose();
 
             }
         });
+
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new MainMenuScreen(core));
+                dispose();
+
+            }
+        });
+
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);

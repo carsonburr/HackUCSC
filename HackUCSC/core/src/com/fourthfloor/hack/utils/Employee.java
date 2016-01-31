@@ -1,5 +1,6 @@
 package com.fourthfloor.hack.utils;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.TimeUtils;
 
@@ -44,8 +45,8 @@ public class Employee {
         hw = 0;
     }
 
-    //salary,name,benefits
-    public Employee(double x, String y, String k){
+    //salary,name,benefits, picture
+    public Employee(double x, String y, String k, String p){
         salary = x;
         name = y.toUpperCase();
         benefits = k;
@@ -54,6 +55,7 @@ public class Employee {
         hr = 0;
         shr = 0;
         hw = 0;
+        pic = new Sprite(new Texture(p));
     }
 
     //get hours worked

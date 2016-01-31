@@ -28,9 +28,10 @@ public class FindEmployeeAskScreen implements Screen {
     TextButton enterButton;
     public String name;
     TextButton employeeFound;
+    TextButton back;
     public static String EmployeeName;
 
-    public FindEmployeeAskScreen(MainCore mainCore){
+    public FindEmployeeAskScreen(MainCore mainCore) {
         stage = new Stage();
         this.core = mainCore;
         list = new Table();
@@ -48,9 +49,10 @@ public class FindEmployeeAskScreen implements Screen {
         TextField.TextFieldStyle style1 = new TextField.TextFieldStyle();
         style1.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
         style1.fontColor = Color.GRAY;
-        style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"),1,1,1,1));
+        style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
         enterButton = new TextButton("Enter", style);
+        back = new TextButton("Back", style);
 
 
         txtInput = new TextField("", style1);
@@ -58,13 +60,15 @@ public class FindEmployeeAskScreen implements Screen {
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enterButton);
+        list.row();
+        list.add(back);
 
         enterButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String text = txtInput.getText();
-                for(int i =0; i< Database.database.size(); i++){
-                    if(text.toUpperCase().equals(Database.database.get(i).getName())){
+                for (int i = 0; i < Database.database.size(); i++) {
+                    if (text.toUpperCase().equals(Database.database.get(i).getName())) {
                         NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
                         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
@@ -73,7 +77,7 @@ public class FindEmployeeAskScreen implements Screen {
                         style.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
                         style.fontColor = Color.GRAY;
 
-                       EmployeeName = Database.database.get(i).getName();
+                        EmployeeName = Database.database.get(i).getName();
                         core.setScreen(new EmployeeFound(core));
                         dispose();
 
@@ -94,11 +98,23 @@ public class FindEmployeeAskScreen implements Screen {
             }
         });
 
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                String text = txtInput.getText();
+                    core.setScreen(new EmployerScreen(core));
+                    dispose();
+
+            }
+        });
+
+
+
+
+
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
-
     }
-
 
     @Override
     public void show() {
@@ -137,3 +153,5 @@ public class FindEmployeeAskScreen implements Screen {
 
     }
 }
+
+

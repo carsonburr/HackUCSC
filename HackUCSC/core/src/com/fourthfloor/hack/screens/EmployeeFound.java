@@ -8,13 +8,18 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.fourthfloor.hack.MainCore;
 import com.fourthfloor.hack.utils.Database;
 
@@ -27,11 +32,19 @@ public class EmployeeFound implements Screen {
     Table list;
     TextButton EF;
     TextButton back;
+    Image pic;
+
 
     public EmployeeFound (MainCore mainCore) {
         stage = new Stage();
         this.core = mainCore;
         list = new Table();
+
+        for(int i = 0;i<Database.database.size();i++){
+            if(FindEmployeeAskScreen.EmployeeName.equals(Database.database.get(i).getName())){
+                pic = new Image(Database.database.get(i).getPic());
+            }
+        }
 
         NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
@@ -50,11 +63,13 @@ public class EmployeeFound implements Screen {
         }
 
         back = new TextButton("Back", style);
-
+        list.add(pic).width(96).height(96).align(Align.top);
+        list.row();
         list.add(EF).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(back).top().left().width(Gdx.graphics.getWidth()).height(100);
         list.row();
+
 
         back.addListener(new ClickListener() {
             @Override
@@ -81,6 +96,7 @@ public class EmployeeFound implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+        //Gdx.app.log("picture is at", "" + pic.getX() + "," + pic.getY());
     }
 
     @Override
