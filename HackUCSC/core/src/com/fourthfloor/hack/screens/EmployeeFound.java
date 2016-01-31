@@ -128,6 +128,6 @@ public class EmployeeFound implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

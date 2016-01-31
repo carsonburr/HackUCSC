@@ -136,7 +136,7 @@ public class changenwd implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }
 

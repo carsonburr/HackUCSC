@@ -106,6 +106,6 @@ public class vacationDays implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

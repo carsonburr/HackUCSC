@@ -123,6 +123,6 @@ public class maxSDH implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

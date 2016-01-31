@@ -119,7 +119,7 @@ public class Password implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 
 }
