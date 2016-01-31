@@ -63,15 +63,22 @@ public class Employee {
         pic = new Sprite(new Texture(p));
     }
     //boolean return for if the first cell in the array hours holds a value
-    public void HE(){
-        if(hours.get(0)!= null){
-            exist = true;
+    public boolean HE(){
+        for(int i = 0; i < hours.size(); i++){
+            if(hours.get(i)!= null){
+                Employee.exist = true;
+                return true;
+            }
         }
+        if (exist) {
+            return true;
+        }
+        return exist = false;
     }
     //get total hours worked
     public double getHours(){
         double result = 0;
-        for(int i = 0; i<hours.size()/2; i++){
+        for (int i = 0; i < hours.size()/2; i++){
             double e = stringToDouble((hours.get(i*2)));
             double k = stringToDouble(hours.get(i*2 +1));
             result += k-e;
@@ -96,14 +103,14 @@ public class Employee {
     }
     //get hours worked that day
     public double getHWD(){
-        double a = Double.parseDouble(hours.get(hours.size()-8));
-        double b = Double.parseDouble(hours.get(hours.size()-7));
-        double c = Double.parseDouble(hours.get(hours.size()-6));
-        double d = Double.parseDouble(hours.get(hours.size()-5));
-        double e = Double.parseDouble(hours.get(hours.size()-4));
-        double f = Double.parseDouble(hours.get(hours.size()-3));
-        double g = Double.parseDouble(hours.get(hours.size()-2));
-        double h = Double.parseDouble(hours.get(hours.size()-1));
+        double a = stringToDouble(hours.get(hours.size()-8));
+        double b = stringToDouble(hours.get(hours.size()-7));
+        double c = stringToDouble(hours.get(hours.size()-6));
+        double d = stringToDouble(hours.get(hours.size()-5));
+        double e = stringToDouble(hours.get(hours.size()-4));
+        double f = stringToDouble(hours.get(hours.size()-3));
+        double g = stringToDouble(hours.get(hours.size()-2));
+        double h = stringToDouble(hours.get(hours.size()-1));
         hwd = b-a+d-c+f-e+h-g;
         return hwd;
     }

@@ -160,6 +160,9 @@ public class StatisticsScreen implements Screen {
     }
 
     public void getAvgTotHours() {
+        for(int i = 0; i<Database.database.size();i++){
+            Database.database.get(i).HE();
+        }
         if (Employee.exist) {
                 int length = Database.database.size();
             double AvgTotHours = 0;
@@ -175,8 +178,9 @@ public class StatisticsScreen implements Screen {
             int length = Database.database.size();
             double hours = 0;
             for (int i = 0; i < length; i++)
-                hours = hours + Database.database.get(i).getHWD();
-
+                if(Database.database.get(i).hours.size()>=8){
+                    hours = hours + Database.database.get(i).getHWD();
+                }
             Statistics.totPrevHoursWorked = (hours / (length));
         }
     }
