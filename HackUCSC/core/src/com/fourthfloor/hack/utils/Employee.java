@@ -15,7 +15,7 @@ public class Employee {
     private String name;
     private String benefits;
     //vacation days
-    private int vD = 0;
+    public static int vD = 0;
     private Sprite pic;
     //total hours
     private double hr;
@@ -23,13 +23,15 @@ public class Employee {
     private double shr;
     //can be polished** @DJWhiteMocha
     //max sick day hours
-    public double shrMax = 900;
+    public static double shrMax = 900;
     //normal work hours
-    public double nwd;
-    //hours of overtime  **change
+    public static double nwd;
+    //TODO hours until overtime  **change
     public double ovt = 41;
     //hours worked
     private double hw;
+    //hours worked that day
+    public static double hwd;
 
 
     //default constructor
@@ -43,6 +45,7 @@ public class Employee {
         hr = 0;
         shr = 0;
         hw = 0;
+        hwd = 0;
     }
 
     //salary,name,benefits, picture
@@ -71,6 +74,19 @@ public class Employee {
         double t = a-b+c-d+e-f+g-h;
         hw = t;
         return hw;
+    }
+    //get hours worked that day
+    public double getHWD(){
+        double a = Double.parseDouble(hours.get(7));
+        double b = Double.parseDouble(hours.get(6));
+        double c = Double.parseDouble(hours.get(5));
+        double d = Double.parseDouble(hours.get(4));
+        double e = Double.parseDouble(hours.get(3));
+        double f = Double.parseDouble(hours.get(2));
+        double g = Double.parseDouble(hours.get(1));
+        double h = Double.parseDouble(hours.get(0));
+        hwd = a-b+c-d+e-f+g-h;
+        return hwd;
     }
     //returns name of employee
     public String getName(){
