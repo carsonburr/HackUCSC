@@ -11,7 +11,7 @@ public class Employee {
 
     public ArrayList<String> hours;
 
-    private double salary;
+    private int salary;
     private String name;
     private String benefits;
     //vacation days
@@ -49,7 +49,7 @@ public class Employee {
     }
 
     //salary,name,benefits, picture
-    public Employee(double x, String y, String k, String p){
+    public Employee(int x, String y, String k, String p){
         salary = x;
         name = y.toUpperCase();
         benefits = k;

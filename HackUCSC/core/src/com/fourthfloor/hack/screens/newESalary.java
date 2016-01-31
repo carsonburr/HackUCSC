@@ -27,7 +27,7 @@ public class newESalary implements Screen {
     TextButton enterButton;
     TextButton back;
     TextButton mainmenu;
-    public static double newESalary;
+    public static int newESalary;
 
     public newESalary (MainCore mainCore) {
         stage = new Stage();
@@ -67,7 +67,7 @@ public class newESalary implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String text = txtInput.getText();
-                newESalary = Double.parseDouble(text);
+                newESalary = Integer.parseInt(text);
                 core.setScreen(new newEBenefits(core));
                 dispose();
             }
