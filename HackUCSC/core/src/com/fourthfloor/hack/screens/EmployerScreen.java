@@ -7,11 +7,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.fourthfloor.hack.MainCore;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -23,14 +26,15 @@ public class EmployerScreen implements Screen {
     private String PW;
     private MainCore core;
     private Stage stage;
+    private Button backArrow;
 
     Table list;
     TextButton findEmployeeButton;
     TextButton addEmployeeButton;
-    TextButton back;
     TextButton maxsixkdayhours;
     TextButton setVD;
     TextButton changenwd;
+    private Table titleBarOptions;
 
     public EmployerScreen(MainCore mainCore){
         PW = "1234";
@@ -38,6 +42,15 @@ public class EmployerScreen implements Screen {
         stage = new Stage();
         list = new Table();
         list.align(Align.topLeft);
+        backArrow = new Button(new SpriteDrawable(new Sprite(new Texture("BackArrow.png"))));
+        titleBarOptions = new Table();
+
+        list.setFillParent(true);
+
+        titleBarOptions.add(backArrow).height(60).width(60).expand().left().pad(20);
+        titleBarOptions.setBackground(new NinePatchDrawable(new NinePatch(new Texture("TitleBar.png"), 1, 1, 1, 1)));
+        list.add(titleBarOptions).width(Gdx.graphics.getWidth()).height(100);
+        list.row();
 
         NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
@@ -49,17 +62,14 @@ public class EmployerScreen implements Screen {
 
         findEmployeeButton = new TextButton("Find Employee", style);
         addEmployeeButton = new TextButton("Add Employee", style);
-        back =  new TextButton("Back to main menu", style);
         maxsixkdayhours = new TextButton("Change maximum sick day hours",style);
         setVD = new TextButton("Set number of vacation days", style);
         changenwd = new TextButton("Change the normal work hours in a week",style);
 
-        list.setFillParent(true);
+
         list.add(findEmployeeButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
         list.row();
         list.add(addEmployeeButton).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
-        list.row();
-        list.add(back).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
         list.row();
         list.add(maxsixkdayhours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
         list.row();
@@ -105,12 +115,11 @@ public class EmployerScreen implements Screen {
             }
         });
 
-        back.addListener(new ClickListener() {
+        backArrow.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 core.setScreen(new MainMenuScreen(core));
                 dispose();
-
             }
         });
 

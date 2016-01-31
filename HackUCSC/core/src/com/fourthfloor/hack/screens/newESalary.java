@@ -7,13 +7,17 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.fourthfloor.hack.MainCore;
 
 /**
@@ -25,14 +29,24 @@ public class newESalary implements Screen {
     TextField txtInput;
     Table list;
     TextButton enterButton;
-    TextButton back;
     TextButton mainmenu;
     public static int newESalary;
+    private Button backArrow;
+    private Table titleBarOptions;
 
     public newESalary (MainCore mainCore) {
         stage = new Stage();
         this.core = mainCore;
         list = new Table();
+        titleBarOptions = new Table();
+
+        backArrow = new Button(new SpriteDrawable(new Sprite(new Texture("BackArrow.png"))));
+        titleBarOptions = new Table();
+
+        titleBarOptions.add(backArrow).height(60).width(60).expand().left().pad(20);
+        titleBarOptions.setBackground(new NinePatchDrawable(new NinePatch(new Texture("TitleBar.png"), 1, 1, 1, 1)));
+        list.add(titleBarOptions).width(Gdx.graphics.getWidth()).height(100);
+        list.row();
 
         NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
@@ -41,7 +55,7 @@ public class newESalary implements Screen {
         style.up = patch;
         style.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
         style.fontColor = Color.GRAY;
-
+        list.align(Align.topLeft);
         list.setFillParent(true);
 
         TextField.TextFieldStyle style1 = new TextField.TextFieldStyle();
@@ -50,18 +64,15 @@ public class newESalary implements Screen {
         style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"),1,1,1,1));
 
         enterButton = new TextButton("Enter", style);
-        back = new TextButton("back", style);
         mainmenu = new TextButton("Main menu",style);
 
         txtInput = new TextField("", style1);
         txtInput.setMessageText("Type in the Employee's salary Here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
-        list.add(enterButton);
+        list.add(enterButton).top().left().width(Gdx.graphics.getWidth()).height(100);
         list.row();
-        list.add(back);
-        list.row();
-        list.add(mainmenu);
+        list.add(mainmenu).top().left().width(Gdx.graphics.getWidth()).height(100);
 
         enterButton.addListener(new ClickListener() {
             @Override
@@ -73,7 +84,7 @@ public class newESalary implements Screen {
             }
         });
 
-        back.addListener(new ClickListener() {
+        backArrow.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 core.setScreen(new newEName(core));
