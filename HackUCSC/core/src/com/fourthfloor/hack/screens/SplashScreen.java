@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.fourthfloor.hack.MainCore;
+import com.fourthfloor.hack.utils.Database;
+import com.fourthfloor.hack.utils.Employee;
 
 /**
  * Created by Carson on 1/29/2016.
@@ -25,6 +27,17 @@ public class SplashScreen implements Screen{
 
     public SplashScreen(MainCore mainCore) {
         this.core = mainCore;
+
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Thomas", "not as many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Kyle", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Kyle", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Milla", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
 
         stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         table = new Table();

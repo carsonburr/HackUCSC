@@ -48,11 +48,6 @@ public class EmployeeScreen implements Screen {
     public EmployeeScreen(MainCore mainCore) {
         core = mainCore;
 
-
-
-
-
-
         stage = new Stage();
         table = new Table();
         backArrow = new Button(new SpriteDrawable(new Sprite(new Texture("BackArrow.png"))));
@@ -75,7 +70,7 @@ public class EmployeeScreen implements Screen {
         Texture empty = new Texture("Empty.png");
 
         Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
+        labelStyle.font = new BitmapFont(Gdx.files.internal("Arial_small.fnt"), Gdx.files.internal("Arial_small_0.png"), false);
         labelStyle.fontColor = Color.DARK_GRAY;
 
         for (int i = 0; i < Database.database.size(); i++) {
