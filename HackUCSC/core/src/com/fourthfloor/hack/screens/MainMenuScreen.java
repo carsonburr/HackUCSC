@@ -41,7 +41,7 @@ public class MainMenuScreen implements Screen {
         StatisticsScreen.setStatistics();
 
         stage = new Stage();
-        logo = new Image(new Texture("test.png"));
+        logo = new Image(new Texture("HackUCSC_Logo_AT_short.png"));
         list = new Table();
 
         NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
