@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.fourthfloor.hack.MainCore;
 import com.fourthfloor.hack.utils.Database;
+import com.fourthfloor.hack.utils.Employee;
 import com.fourthfloor.hack.utils.Statistics;
 
 import java.awt.Label;
@@ -29,11 +30,10 @@ public class StatisticsScreen implements Screen {
     Stage stage;
     Table list;
     public String avgSal;
-    public String avgHours;
     public String totalHours;
     public String avgTotHours;
     public String totPrevHoursWorked;
-    TextButton labAvgHours;
+    TextButton labTotPrevHoursWorked;
     TextButton labAvgSal;
     TextButton labAvgTotHours;
     TextButton labTotalHours;
@@ -52,7 +52,7 @@ public class StatisticsScreen implements Screen {
         style.fontColor = Color.GRAY;
 
 
-        labAvgHours = new TextButton(avgHours, style);
+        labTotPrevHoursWorked = new TextButton(totPrevHoursWorked, style);
         labAvgSal = new TextButton(avgSal, style);
         labAvgTotHours = new TextButton(avgTotHours, style);
         labTotalHours = new TextButton(totalHours, style);
@@ -60,11 +60,11 @@ public class StatisticsScreen implements Screen {
         list.align(Align.topLeft);
         list.setFillParent(true);
 
-        list.add(labAvgHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 4);
+        list.add(labTotPrevHoursWorked).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 4);
         list.row();
-        list.add(labAvgSal).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() /4);
+        list.add(labAvgSal).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 4);
         list.row();
-        list.add(labAvgTotHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() /4);
+        list.add(labAvgTotHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 4);
         list.row();
         list.add(labTotalHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() /4);
 
@@ -133,30 +133,35 @@ public class StatisticsScreen implements Screen {
     }
 
     public boolean getAvgTotHours() {
-        int length = Database.database.size();
-        double AvgTotHours = 0;
-        for (int i = 0; i < length; i++)
-            AvgTotHours = AvgTotHours + Database.database.get(i).getHours();
+        if (Employee.exist) {
+                int length = Database.database.size();
+            double AvgTotHours = 0;
+            for (int i = 0; i < length; i++)
+                AvgTotHours = AvgTotHours + Database.database.get(i).getHours();
 
-        Statistics.avgTotHours = (AvgTotHours / (length - 1));
-        return true;
+            Statistics.avgTotHours = (AvgTotHours / (length - 1));
+            return true;
+        }
+        else return false;
     }
 
     public boolean getTotPrevDaysHours() {
-        int length = Database.database.size();
-        double hours = 0;
-        for (int i = 0; i < length; i++)
-            hours = hours + Database.database.get(i).getHours();
+        if (Employee.exist) {
+            int length = Database.database.size();
+            double hours = 0;
+            for (int i = 0; i < length; i++)
+                hours = hours + Database.database.get(i).getHWD();
 
-        Statistics.totPrevHoursWorked = (hours / (length - 1));
-        return true;
+            Statistics.totPrevHoursWorked = (hours / (length - 1));
+            return true;
+        }
+        else return false;
     }
-
     public boolean setLabels(){
-        avgSal = "Average employee salary is: " + Statistics.avgSal;
+        avgSal = "Average employee salary: " + Statistics.avgSal;
         totalHours = "Total hours worked in business: " + Statistics.totalHours;
-        avgTotHours = "Average hours worked by employee base is: " + Statistics.avgTotHours;
-        totPrevHoursWorked = "Total hours worked in previous day is: ";
+        avgTotHours = "Average hours worked by employee base: " + Statistics.avgTotHours;
+        totPrevHoursWorked = "Total hours worked in previous day: "+ Statistics.totPrevHoursWorked;
         return true;
     }
 
