@@ -69,18 +69,9 @@ public class FindEmployeeAskScreen implements Screen {
                 String text = txtInput.getText();
                 for (int i = 0; i < Database.database.size(); i++) {
                     if (text.toUpperCase().equals(Database.database.get(i).getName())) {
-                        NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
-
-                        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
-                        style.down = patch;
-                        style.up = patch;
-                        style.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
-                        style.fontColor = Color.GRAY;
-
                         EmployeeName = Database.database.get(i).getName();
                         core.setScreen(new EmployeeFound(core));
                         dispose();
-
                     }
                 }
                 NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
@@ -95,24 +86,17 @@ public class FindEmployeeAskScreen implements Screen {
                 list.row();
                 list.add(employeeFound).top().left().width(Gdx.graphics.getWidth()).height(100);
                 list.row();
+
+                Gdx.input.setInputProcessor(stage);
+                stage.addActor(list);
             }
         });
 
         back.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                String text = txtInput.getText();
-                for(int i = 0; i<Database.database.size();i++){
-                    if(Database.database.get(i).equals(text.toUpperCase())){
-                        EmployeeName = text;
-                        core.setScreen(new EmployerScreen(core));
-                        dispose();
-                    } else{
-
-                    }
-                }
-
-
+                core.setScreen(new EmployerScreen(core));
+                dispose();
             }
         });
 

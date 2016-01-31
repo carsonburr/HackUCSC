@@ -34,7 +34,8 @@ public class Employee {
     public double hwd;
     //arraylist to determine popup
     public ArrayList<String> popup = new ArrayList<String>();
-
+    //static variable to determine if there are hours
+    public static boolean exist = false;
 
     //default constructor
     public Employee(){
@@ -62,13 +63,9 @@ public class Employee {
         pic = new Sprite(new Texture(p));
     }
     //boolean return for if the first cell in the array hours holds a value
-    public boolean HE(){
-        boolean exists = false;
+    public void HE(){
         if(hours.get(0)!= null){
-            exists = true;
-            return exists;
-        }else{
-            return exists;
+            exist = true;
         }
     }
     //get total hours worked
