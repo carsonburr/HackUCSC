@@ -36,11 +36,6 @@ public class MainMenuScreen implements Screen {
 
     public MainMenuScreen(MainCore mainCore) {
 
-        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Thomas", "not as many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Kyle", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Milla", "so many things", "PersonPlaceholder.png"));
-
         this.core = mainCore;
 
         stage = new Stage();

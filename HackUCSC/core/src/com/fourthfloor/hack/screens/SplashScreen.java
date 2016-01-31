@@ -28,7 +28,10 @@ public class SplashScreen implements Screen{
     public SplashScreen(MainCore mainCore) {
         this.core = mainCore;
 
-
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Thomas", "not as many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Kyle", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Milla", "so many things", "PersonPlaceholder.png"));
 
         stage = new Stage(new StretchViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         table = new Table();

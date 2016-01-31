@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Timer;
 import com.fourthfloor.hack.MainCore;
 import com.fourthfloor.hack.utils.Constants;
 import com.fourthfloor.hack.utils.Database;
@@ -96,10 +97,37 @@ public class EmployeeScreen implements Screen {
                     new SpriteDrawable(new Sprite(new Texture("ClockChecked.png")))));
             listItems.get(i).add(widgets.get(i).get(currWidget)).width(Constants.PROFILE_PIC_WIDTH).height(Constants.PROFILE_PIC_HEIGHT).pad(10);
             final int j = i;
+            final int curr = currWidget;
             widgets.get(i).get(currWidget).addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     Database.database.get(j).clock();
+
+                    if (!Database.database.get(j).popup.isEmpty()) {
+                        if (widgets.get(j).get(curr-1) instanceof Label) {
+                            ((Label) widgets.get(j).get(curr - 1)).setText(Database.database.get(j).popup.get(0));
+                        }
+                        Database.database.get(j).popup.remove(0);
+                        for (int i = 1; i < Database.database.get(j).popup.size(); i++) {
+                            Database.database.get(j).popup.set(i-1, Database.database.get(j).popup.get(i));
+                            if (i+1 == Database.database.get(j).popup.size()) {
+                                Database.database.get(j).popup.remove(i);
+                            }
+                        }
+                    } else {
+                        if (widgets.get(j).get(curr-1) instanceof Label) {
+                            ((Label) widgets.get(j).get(curr - 1)).setText("No text to show");
+                        }
+                    }
+
+                    Timer.schedule(new Timer.Task() {
+                        @Override
+                        public void run() {
+                            if (widgets.get(j).get(curr-1) instanceof Label) {
+                                ((Label) widgets.get(j).get(curr - 1)).setText("");
+                            }
+                        }
+                    }, 2.0f);
                 }
             });
 
