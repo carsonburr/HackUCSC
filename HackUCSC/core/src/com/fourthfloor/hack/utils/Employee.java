@@ -72,8 +72,8 @@ public class Employee {
     public double getHours(){
         double result = 0;
         for(int i = 0; i<hours.size()/2; i++){
-            double e = Double.parseDouble(hours.get(i*2));
-            double k = Double.parseDouble(hours.get(i*2 +1));
+            double e = stringToDouble((hours.get(i*2)));
+            double k = stringToDouble(hours.get(i*2 +1));
             result += k-e;
         }
         return result;
