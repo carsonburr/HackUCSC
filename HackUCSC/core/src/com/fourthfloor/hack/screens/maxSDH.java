@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.fourthfloor.hack.MainCore;
+import com.fourthfloor.hack.utils.Database;
 import com.fourthfloor.hack.utils.Employee;
 
 /**
@@ -60,11 +61,14 @@ public class maxSDH implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String text = txtInput.getText();
-                Employee.shrMax = Double.parseDouble(text);
+                Employee.shrMax = Integer.parseInt(text);
+                for(int i = 0; i<Database.database.size();i++) {
+                    Database.database.get(i).setSDH(Integer.parseInt(text));
+                    Database.database.get(i).addPopup("Your maximum sick day hours have been changed to: " + Employee.shrMax + " hours.");
+                }
                 core.setScreen(new EmployerScreen(core));
                 dispose();
-            }
-        });
+        }});
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);

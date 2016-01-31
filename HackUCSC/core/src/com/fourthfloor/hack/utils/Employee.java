@@ -18,22 +18,22 @@ public class Employee {
     public static int vD = 0;
     private Sprite pic;
     //total hours
-    private double hr;
+    private int hr;
     //sick day hours
-    private double shr;
+    private int shr;
     //can be polished** @DJWhiteMocha
     //max sick day hours
-    public static double shrMax = 900;
+    public static int shrMax = 900;
     //normal work hours
     public static double nwd;
     //TODO hours until overtime  **change
-    public double ovt = 41;
+    public int ovt = 41;
     //hours worked
-    private double hw;
+    private int hw;
     //hours worked that day
-    public double hwd;
+    public int hwd;
     //arraylist to determine popup
-    public static ArrayList<String> popup = new ArrayList<String>();
+    public ArrayList<String> popup = new ArrayList<String>();
 
 
     //default constructor
@@ -73,8 +73,16 @@ public class Employee {
         double g = Double.parseDouble(hours.get(1));
         double h = Double.parseDouble(hours.get(0));
         double t = a-b+c-d+e-f+g-h;
-        hw = t;
+        hw = (int)Math.ceil(t);
         return hw;
+    }
+    //sets the normal work week hours
+    public void setNWWH(double r){
+        nwd = r;
+    }
+    //sets the maximum number of sick day hours
+    public void setSDH(int f){
+        shrMax = f;
     }
     //sets the salary of the employee
     public void setSalary(int e){
@@ -94,7 +102,7 @@ public class Employee {
         double f = Double.parseDouble(hours.get(2));
         double g = Double.parseDouble(hours.get(1));
         double h = Double.parseDouble(hours.get(0));
-        hwd = a-b+c-d+e-f+g-h;
+        hw = (int)Math.ceil(a-b+c-d+e-f+g-h);
         return hwd;
     }
     //returns name of employee
@@ -151,7 +159,7 @@ public class Employee {
     public double getTotalHours(){
         return hr;
     }
-    //TODO NEEDS TO BE CALLED AFTER LAST CLOCK FOR EACH EMPLOYEE
+    //TODO NEEDS TO BE CALLED AFTER LAST CLOCK OUT FOR EACH EMPLOYEE
     //adds hours worked to the employee, then updates the sick day hours of the employee
     public void signOut(){
         double a = Double.parseDouble(hours.get(7));
@@ -176,10 +184,6 @@ public class Employee {
     //returns the picture of employee
     public Sprite getPic(){
         return pic;
-    }
-    //change sick day hour max
-    public void changeShrMax(double e){
-        shrMax = e;
     }
     //change normal work day hours
     public void changeNWD(double e){

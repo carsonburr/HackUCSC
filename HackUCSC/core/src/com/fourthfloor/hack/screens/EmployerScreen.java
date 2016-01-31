@@ -31,6 +31,8 @@ public class EmployerScreen implements Screen {
     TextButton maxsixkdayhours;
     TextButton vacationdays;
     TextButton setVD;
+    TextButton changesickdayhourmax;
+    TextButton changenwd;
 
     public EmployerScreen(MainCore mainCore){
         PW = "1234";
@@ -53,6 +55,8 @@ public class EmployerScreen implements Screen {
         maxsixkdayhours = new TextButton("Change maximum sick day hours.",style);
         vacationdays = new TextButton("Change number of vacation days",style);
         setVD = new TextButton("Set number of vacation days", style);
+        changesickdayhourmax = new TextButton("Change sick day hour max",style);
+        changenwd = new TextButton("Change the normal work hours in a week.",style);
 
         list.setFillParent(true);
         list.add(findEmployeeButton).top().left().width(Gdx.graphics.getWidth() / 6).height(Gdx.graphics.getHeight() / 10);
@@ -66,6 +70,10 @@ public class EmployerScreen implements Screen {
         list.add(vacationdays).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
         list.row();
         list.add(setVD).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
+        list.row();
+        list.add(changesickdayhourmax).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
+        list.row();
+        list.add(changenwd).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
 
 
 
@@ -73,6 +81,24 @@ public class EmployerScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 core.setScreen(new FindEmployeeAskScreen(core));
+                dispose();
+
+            }
+        });
+
+        changenwd.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new changenwd(core));
+                dispose();
+
+            }
+        });
+
+        changesickdayhourmax.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new ChangesdhMax(core));
                 dispose();
 
             }

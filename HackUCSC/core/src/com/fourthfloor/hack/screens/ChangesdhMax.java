@@ -16,14 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.fourthfloor.hack.MainCore;
 import com.fourthfloor.hack.utils.Database;
-import com.fourthfloor.hack.utils.Employee;
-
-import javax.xml.crypto.Data;
 
 /**
  * Created by Kyle on 1/31/2016.
  */
-public class setVD implements Screen {
+public class ChangesdhMax implements Screen {
     private MainCore core;
     private Stage stage;
     TextField txtInput;
@@ -32,7 +29,7 @@ public class setVD implements Screen {
     TextButton back;
     TextButton mainmenu;
 
-    public setVD (MainCore mainCore) {
+    public ChangesdhMax(MainCore mainCore) {
         stage = new Stage();
         this.core = mainCore;
         list = new Table();
@@ -57,7 +54,7 @@ public class setVD implements Screen {
         mainmenu = new TextButton("Main menu", style);
 
         txtInput = new TextField("", style1);
-        txtInput.setMessageText("Type in the Employee's salary Here");
+        txtInput.setMessageText("Type in the new maximum sick day hours");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enterButton);
@@ -66,14 +63,18 @@ public class setVD implements Screen {
         list.row();
         list.add(mainmenu);
 
+
+
         enterButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String text = txtInput.getText();
-                Employee.vD = Integer.parseInt(text);
-                for(int i = 0; i< Database.database.size();i++){
-                    Database.database.get(i).setVD(Integer.parseInt(text));
-                    Database.database.get(i).addPopup("Your number of vacation days has been changed to: " + Employee.vD);
+                int newsdh = Integer.parseInt(text);
+                for (int i = 0; i < Database.database.size(); i++) {
+                    if (FindEmployeeAskScreen.EmployeeName.equals(Database.database.get(i).getName())) {
+                        Database.database.get(i).setSDH(newsdh);
+                        Database.database.get(i).addPopup("Your maximum sick day hours have been changed to: " + newsdh);
+                    }
                 }
                 core.setScreen(new EmployerScreen(core));
                 dispose();
@@ -96,49 +97,46 @@ public class setVD implements Screen {
             }
         });
 
-
-
-
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
 
     }
 
-        @Override
-        public void show () {
+    @Override
+    public void show() {
 
-        }
-
-        @Override
-        public void render ( float delta){
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-            stage.act(Gdx.graphics.getDeltaTime());
-            stage.draw();
-        }
-
-        @Override
-        public void resize ( int width, int height){
-
-        }
-
-        @Override
-        public void pause () {
-
-        }
-
-        @Override
-        public void resume () {
-
-        }
-
-        @Override
-        public void hide () {
-
-        }
-
-        @Override
-        public void dispose () {
-
-        }
     }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
+}
 
