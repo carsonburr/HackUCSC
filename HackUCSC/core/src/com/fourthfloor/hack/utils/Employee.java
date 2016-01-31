@@ -167,20 +167,27 @@ public class Employee {
     //TODO NEEDS TO BE CALLED AFTER LAST CLOCK OUT FOR EACH EMPLOYEE
     //adds hours worked to the employee, then updates the sick day hours of the employee
     public void signOut(){
-        double a = Double.parseDouble(hours.get(hours.size()-8));
-        double b = Double.parseDouble(hours.get(hours.size()-7));
-        double c = Double.parseDouble(hours.get(hours.size()-6));
-        double d = Double.parseDouble(hours.get(hours.size()-5));
-        double e = Double.parseDouble(hours.get(hours.size()-4));
-        double f = Double.parseDouble(hours.get(hours.size()-3));
-        double g = Double.parseDouble(hours.get(hours.size()-2));
-        double h = Double.parseDouble(hours.get(hours.size()-1));
+        double a = stringToDouble(hours.get(hours.size() - 8));
+        double b = stringToDouble(hours.get(hours.size() - 7));
+        double c = stringToDouble(hours.get(hours.size() - 6));
+        double d = stringToDouble(hours.get(hours.size() - 5));
+        double e = stringToDouble(hours.get(hours.size() - 4));
+        double f = stringToDouble(hours.get(hours.size() - 3));
+        double g = stringToDouble(hours.get(hours.size() - 2));
+        double h = stringToDouble(hours.get(hours.size()-1));
         double t = a-b+c-d+e-f+g-h;
         hr+=t;
         shr = hr/30;
         if(shr > shrMax){
             shr = shrMax;
         }
+    }
+    private double stringToDouble(String rawHours) {
+        double result = 0;
+        result += Double.parseDouble(rawHours.split(":")[0]);
+        result += Double.parseDouble(rawHours.split(":")[1])/60.0;
+        result += Double.parseDouble(rawHours.split(":")[2])/3600.0;
+        return result;
     }
     //returns the sick day hour max
     public double getShrMax(){

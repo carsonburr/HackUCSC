@@ -86,7 +86,7 @@ public class EmployeeScreen implements Screen {
             listItems.get(i).add(widgets.get(i).get(currWidget)).height(Constants.PROFILE_PIC_HEIGHT).pad(10).left();
 
             currWidget++;
-            widgets.get(i).add(currWidget, new Label("Things and stuff and words", labelStyle));
+            widgets.get(i).add(currWidget, new Label("", labelStyle));
             listItems.get(i).add(widgets.get(i).get(currWidget)).height(Constants.PROFILE_PIC_HEIGHT).pad(10).right().expandX();
 
             currWidget++;
@@ -95,6 +95,13 @@ public class EmployeeScreen implements Screen {
                     new SpriteDrawable(new Sprite(new Texture("ClockPressed.png"))),
                     new SpriteDrawable(new Sprite(new Texture("ClockChecked.png")))));
             listItems.get(i).add(widgets.get(i).get(currWidget)).width(Constants.PROFILE_PIC_WIDTH).height(Constants.PROFILE_PIC_HEIGHT).pad(10);
+            final int j = i;
+            widgets.get(i).get(currWidget).addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    Database.database.get(j).clock();
+                }
+            });
 
             listItems.get(i).setBackground(patch);
 
