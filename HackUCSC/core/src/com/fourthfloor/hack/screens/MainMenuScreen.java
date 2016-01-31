@@ -76,6 +76,14 @@ public class MainMenuScreen implements Screen {
             }
         });
 
+        statisticsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new StatisticsScreen(core));
+                dispose();
+            }
+        });
+
         employerButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
