@@ -27,6 +27,7 @@ public class maxSDH implements Screen {
     Table list;
     TextField txtInput;
     TextButton enter;
+    TextButton back;
 
     public maxSDH (MainCore mainCore) {
         stage = new Stage();
@@ -49,6 +50,7 @@ public class maxSDH implements Screen {
         style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"),1,1,1,1));
 
         enter = new TextButton("Enter", style);
+        back = new TextButton("Back",style);
 
 
         txtInput = new TextField("", style1);
@@ -56,19 +58,30 @@ public class maxSDH implements Screen {
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enter);
+        list.row();
+        list.add(back);
 
         enter.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String text = txtInput.getText();
                 Employee.shrMax = Integer.parseInt(text);
-                for(int i = 0; i<Database.database.size();i++) {
+                for (int i = 0; i < Database.database.size(); i++) {
                     Database.database.get(i).setSDH(Double.parseDouble(text));
                     Database.database.get(i).addPopup("Your maximum sick day hours have been changed to: " + Employee.shrMax + " hours.");
                 }
                 core.setScreen(new EmployerScreen(core));
                 dispose();
-        }});
+            }
+        });
+
+        back.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new EmployerScreen(core));
+                dispose();
+            }
+        });
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);

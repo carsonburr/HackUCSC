@@ -102,8 +102,16 @@ public class FindEmployeeAskScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String text = txtInput.getText();
-                    core.setScreen(new EmployerScreen(core));
-                    dispose();
+                for(int i = 0; i<Database.database.size();i++){
+                    if(Database.database.get(i).equals(text.toUpperCase())){
+                        EmployeeName = text;
+                        core.setScreen(new EmployerScreen(core));
+                        dispose();
+                    } else{
+
+                    }
+                }
+
 
             }
         });

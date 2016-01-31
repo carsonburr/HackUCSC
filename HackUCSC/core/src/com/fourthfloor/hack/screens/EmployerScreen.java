@@ -29,9 +29,7 @@ public class EmployerScreen implements Screen {
     TextButton addEmployeeButton;
     TextButton back;
     TextButton maxsixkdayhours;
-    TextButton vacationdays;
     TextButton setVD;
-    TextButton changesickdayhourmax;
     TextButton changenwd;
 
     public EmployerScreen(MainCore mainCore){
@@ -53,9 +51,7 @@ public class EmployerScreen implements Screen {
         addEmployeeButton = new TextButton("Add Employee", style);
         back =  new TextButton("Back to main menu", style);
         maxsixkdayhours = new TextButton("Change maximum sick day hours.",style);
-        vacationdays = new TextButton("Change number of vacation days",style);
         setVD = new TextButton("Set number of vacation days", style);
-        changesickdayhourmax = new TextButton("Change sick day hour max",style);
         changenwd = new TextButton("Change the normal work hours in a week.",style);
 
         list.setFillParent(true);
@@ -67,11 +63,7 @@ public class EmployerScreen implements Screen {
         list.row();
         list.add(maxsixkdayhours).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
         list.row();
-        list.add(vacationdays).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
-        list.row();
         list.add(setVD).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
-        list.row();
-        list.add(changesickdayhourmax).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
         list.row();
         list.add(changenwd).top().left().width(Gdx.graphics.getWidth() / 2).height(Gdx.graphics.getHeight() / 10);
 
@@ -95,15 +87,6 @@ public class EmployerScreen implements Screen {
             }
         });
 
-        changesickdayhourmax.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                core.setScreen(new ChangesdhMax(core));
-                dispose();
-
-            }
-        });
-
         setVD.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -117,15 +100,6 @@ public class EmployerScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 core.setScreen(new maxSDH(core));
-                dispose();
-
-            }
-        });
-
-        vacationdays.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                core.setScreen(new vacationDays(core));
                 dispose();
 
             }

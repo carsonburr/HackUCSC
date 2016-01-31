@@ -57,7 +57,7 @@ public class setVD implements Screen {
         mainmenu = new TextButton("Main menu", style);
 
         txtInput = new TextField("", style1);
-        txtInput.setMessageText("Type in the Employee's salary Here");
+        txtInput.setMessageText("Type in the new number of vacation days here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enterButton);

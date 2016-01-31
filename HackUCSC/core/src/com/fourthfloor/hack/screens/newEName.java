@@ -73,7 +73,7 @@ public class newEName implements Screen {
         back.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                core.setScreen(new MainMenuScreen(core));
+                core.setScreen(new EmployerScreen(core));
                 dispose();
             }
         });

@@ -61,14 +61,22 @@ public class Employee {
         hw = 0;
         pic = new Sprite(new Texture(p));
     }
-
+    //boolean return for if the first cell in the array hours holds a value
+    public boolean HE(){
+        boolean exists = false;
+        if(hours.get(0)!= null){
+            exists = true;
+            return exists;
+        }else{
+            return exists;
+        }
+    }
     //get total hours worked
     public double getHours(){
-        for(int i = 0; i<hours.size(); i++){
-            Double e = Double.parseDouble(hours.get(i));
-            double k = 0;
-            k += e;
-            hr = k;
+        for(int i = 0; i<hours.size()/2; i++){
+            double e = Double.parseDouble(hours.get(i*2));
+            double k = Double.parseDouble(hours.get(i*2 +1));
+            hr += k-e;
         }
         return hr;
     }
@@ -211,4 +219,3 @@ public class Employee {
         vD = e;
     }
 }
-
