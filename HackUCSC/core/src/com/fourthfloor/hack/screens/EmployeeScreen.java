@@ -69,7 +69,9 @@ public class EmployeeScreen implements Screen {
         table.row();
         table.add(scrollPane).fillX();
 
+
         NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
+        table.background(patch);
         Texture empty = new Texture("Empty.png");
 
         Label.LabelStyle labelStyle = new Label.LabelStyle();
