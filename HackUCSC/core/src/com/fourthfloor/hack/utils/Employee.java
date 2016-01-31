@@ -13,7 +13,6 @@ public class Employee {
     private double salary;
     private String name;
     private String benefits;
-    private int password;
     //vacation days
     private int vD = 0;
     private Sprite pic;
@@ -42,12 +41,11 @@ public class Employee {
         vD = 0;
         hr = 0;
         shr = 0;
-        password = 0;
         hw = 0;
     }
 
     //salary,name,benefits,password
-    public Employee(double x, String y, String k, int r){
+    public Employee(double x, String y, String k){
         salary = x;
         name = y.toUpperCase();
         benefits = k;
@@ -55,7 +53,6 @@ public class Employee {
         hours = new ArrayList<String>();
         hr = 0;
         shr = 0;
-        password = r;
         hw = 0;
     }
 
@@ -101,10 +98,6 @@ public class Employee {
     //gets the benefits of the employee
     public String getBenefits(){
         return benefits;
-    }
-    //get the password - purely for account verification
-    public int getPassword(){
-        return password;
     }
     //gets the salary of employee
     public double getSalary(){

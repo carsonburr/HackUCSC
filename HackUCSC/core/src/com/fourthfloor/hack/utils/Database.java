@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Created by Kyle on 1/29/2016.
  */
 public class Database {
-    
+
         public static ArrayList<Employee> database = new ArrayList<Employee>();
 
     //finds specified employee by name
