@@ -31,7 +31,7 @@ public class Employee {
     //hours worked
     private double hw;
     //hours worked that day
-    public static double hwd;
+    public double hwd;
 
 
     //default constructor
