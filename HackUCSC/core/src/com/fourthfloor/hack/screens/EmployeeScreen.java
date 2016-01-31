@@ -2,6 +2,7 @@ package com.fourthfloor.hack.screens;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.fourthfloor.hack.MainCore;
 
 /**
@@ -12,7 +13,7 @@ public class EmployeeScreen implements Screen {
     private final MainCore core;
 
     private Stage stage;
-
+    private Table table;
 
     public EmployeeScreen(MainCore mainCore) {
         core = mainCore;
