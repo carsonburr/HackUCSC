@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -42,23 +43,12 @@ public class EmployeeScreen implements Screen {
     private ScrollPane scrollPane;
     private Table innerTable;
     private ArrayList<Table> listItems;
-    private ArrayList<ArrayList<Widget>> widgets;
+    private ArrayList<ArrayList<Actor>> widgets;
 
     public EmployeeScreen(MainCore mainCore) {
         core = mainCore;
 
 
-
-        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Thomas", "not as many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Kyle", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Kyle", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Milla", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
-        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
 
 
 
@@ -70,7 +60,7 @@ public class EmployeeScreen implements Screen {
         innerTable = new Table();
         scrollPane = new ScrollPane(innerTable);
         listItems = new ArrayList<Table>();
-        widgets = new ArrayList<ArrayList<Widget>>();
+        widgets = new ArrayList<ArrayList<Actor>>();
 
         titleBarOptions.add(backArrow).height(60).width(60).expand().left().pad(20);
         titleBarOptions.setBackground(new NinePatchDrawable(new NinePatch(new Texture("TitleBar.png"), 1, 1, 1, 1)));
@@ -90,7 +80,7 @@ public class EmployeeScreen implements Screen {
 
         for (int i = 0; i < Database.database.size(); i++) {
             listItems.add(i, new Table());
-            widgets.add(i, new ArrayList<Widget>());
+            widgets.add(i, new ArrayList<Actor>());
 
             int currWidget = 0;
             widgets.get(i).add(currWidget, new Image(Database.database.get(i).getPic()));
@@ -103,6 +93,13 @@ public class EmployeeScreen implements Screen {
             currWidget++;
             widgets.get(i).add(currWidget, new Label("Things and stuff and words", labelStyle));
             listItems.get(i).add(widgets.get(i).get(currWidget)).height(Constants.PROFILE_PIC_HEIGHT).pad(10).right().expandX();
+
+            currWidget++;
+            widgets.get(i).add(currWidget, new Button(
+                    new SpriteDrawable(new Sprite(new Texture("ClockUnchecked.png"))),
+                    new SpriteDrawable(new Sprite(new Texture("ClockPressed.png"))),
+                    new SpriteDrawable(new Sprite(new Texture("ClockChecked.png")))));
+            listItems.get(i).add(widgets.get(i).get(currWidget)).width(Constants.PROFILE_PIC_WIDTH).height(Constants.PROFILE_PIC_HEIGHT).pad(10);
 
             listItems.get(i).setBackground(patch);
 

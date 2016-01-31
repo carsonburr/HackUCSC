@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.fourthfloor.hack.MainCore;
+import com.fourthfloor.hack.utils.Database;
+import com.fourthfloor.hack.utils.Employee;
 
 
 /**
@@ -36,6 +38,17 @@ public class MainMenuScreen implements Screen {
     public MainMenuScreen(MainCore mainCore) {
 
         this.core = mainCore;
+
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Thomas", "not as many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Kyle", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Kyle", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Milla", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
+        Database.database.add(new Employee(9999, "Carson", "so many things", "PersonPlaceholder.png"));
 
         stage = new Stage();
         logo = new Image(new Texture("test.png"));
