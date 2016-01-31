@@ -5,18 +5,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.fourthfloor.hack.MainCore;
-import com.fourthfloor.hack.utils.Constants;
 
 /**
  * Created by Carson on 1/29/2016.
@@ -41,9 +35,6 @@ public class SplashScreen implements Screen{
         table.setFillParent(true);
 
         table.add(image).width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight()).bottom().right();
-
-        table.setDebug(true);
-        image.setDebug(true);
 
         Timer.schedule(new Task(){
             @Override
