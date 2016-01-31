@@ -73,6 +73,8 @@ public class maxSDH implements Screen {
         list.row();
         list.add(enter).top().left().width(Gdx.graphics.getWidth()).height(100);
 
+        list.background(patch);
+
         enter.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

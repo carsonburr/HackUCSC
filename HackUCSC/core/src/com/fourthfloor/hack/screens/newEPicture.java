@@ -50,8 +50,9 @@ public class newEPicture implements Screen {
         list.add(titleBarOptions).width(Gdx.graphics.getWidth()).height(100);
         list.row();
 
-        NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
+        NinePatchDrawable patch = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
+        list.background(patch);
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.down = patch;
         style.up = patch;

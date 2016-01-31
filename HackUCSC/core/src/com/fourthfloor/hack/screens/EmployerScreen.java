@@ -77,7 +77,7 @@ public class EmployerScreen implements Screen {
         list.row();
         list.add(changenwd).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 10);
 
-
+        list.background(patch);
 
         findEmployeeButton.addListener(new ClickListener() {
             @Override

@@ -82,6 +82,8 @@ public class EmployeeFound implements Screen {
         list.row();
         list.add(changeSalary).top().left().width(Gdx.graphics.getWidth()).height(100);
 
+        list.background(patch);
+
 
         backArrow.addListener(new ClickListener() {
             @Override

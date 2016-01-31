@@ -74,6 +74,8 @@ public class newESalary implements Screen {
         list.row();
         list.add(mainmenu).top().left().width(Gdx.graphics.getWidth()).height(100);
 
+        list.background(patch);
+
         enterButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

@@ -76,6 +76,8 @@ public class FindEmployeeAskScreen implements Screen {
         list.add(enterButton).top().left().width(Gdx.graphics.getWidth()).height(100);
         list.row();
 
+        list.background(patch);
+
         enterButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

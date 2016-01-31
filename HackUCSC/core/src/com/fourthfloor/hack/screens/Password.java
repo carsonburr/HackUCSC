@@ -69,7 +69,9 @@ public class Password implements Screen {
         txtInput.setMessageText("Type in the Employer Password Here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
-        list.add(enterButton).top().left().width(Gdx.graphics.getWidth()).height(50);
+        list.add(enterButton).top().left().width(Gdx.graphics.getWidth()).height(100);
+
+        list.background(patch);
 
         enterButton.addListener(new ClickListener() {
             @Override
