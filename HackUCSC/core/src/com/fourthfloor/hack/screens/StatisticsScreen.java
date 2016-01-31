@@ -88,7 +88,7 @@ public class StatisticsScreen implements Screen {
         list.add(labAvgTotHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / (5));
         list.row();
         list.add(labTotalHours).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / (5));
-
+        list.background(patch);
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
 
