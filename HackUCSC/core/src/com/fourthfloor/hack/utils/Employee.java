@@ -44,7 +44,7 @@ public class Employee {
         hw = 0;
     }
 
-    //salary,name,benefits,password
+    //salary,name,benefits
     public Employee(double x, String y, String k){
         salary = x;
         name = y.toUpperCase();

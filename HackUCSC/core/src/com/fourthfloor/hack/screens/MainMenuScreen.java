@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.fourthfloor.hack.MainCore;
 
+
 /**
  * Created by Carson on 1/29/2016.
  */
@@ -33,6 +34,7 @@ public class MainMenuScreen implements Screen {
     TextButton settingsButton;
 
     public MainMenuScreen(MainCore mainCore) {
+
         this.core = mainCore;
 
         stage = new Stage();
