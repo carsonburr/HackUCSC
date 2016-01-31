@@ -18,10 +18,12 @@ import com.fourthfloor.hack.MainCore;
 import com.fourthfloor.hack.utils.Database;
 import com.fourthfloor.hack.utils.Employee;
 
+import javax.xml.crypto.Data;
+
 /**
- * Created by Kyle on 1/30/2016.
+ * Created by Kyle on 1/31/2016.
  */
-public class newEPicture implements Screen {
+public class setVD implements Screen {
     private MainCore core;
     private Stage stage;
     TextField txtInput;
@@ -29,9 +31,8 @@ public class newEPicture implements Screen {
     TextButton enterButton;
     TextButton back;
     TextButton mainmenu;
-    public static String newEPicture;
 
-    public newEPicture (MainCore mainCore) {
+    public setVD (MainCore mainCore) {
         stage = new Stage();
         this.core = mainCore;
         list = new Table();
@@ -49,15 +50,14 @@ public class newEPicture implements Screen {
         TextField.TextFieldStyle style1 = new TextField.TextFieldStyle();
         style1.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
         style1.fontColor = Color.GRAY;
-        style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"),1,1,1,1));
+        style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
         enterButton = new TextButton("Enter", style);
         back = new TextButton("back", style);
         mainmenu = new TextButton("Main menu", style);
 
-
         txtInput = new TextField("", style1);
-        txtInput.setMessageText("Type in the Employee's picture path here");
+        txtInput.setMessageText("Type in the Employee's salary Here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enterButton);
@@ -69,8 +69,11 @@ public class newEPicture implements Screen {
         enterButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                newEPicture = txtInput.getText() + ".png";
-                Database.database.add(new Employee(newESalary.newESalary, newEName.newEName, newEBenefits.newEBenefits, newEPicture));
+                String text = txtInput.getText();
+                Employee.vD = Integer.parseInt(text);
+                for(int i = 0; i< Database.database.size();i++){
+                    Database.database.get(i).addPopup("Your number of vacation days has been changed to: " + Employee.vD);
+                }
                 core.setScreen(new EmployerScreen(core));
                 dispose();
             }
@@ -79,7 +82,7 @@ public class newEPicture implements Screen {
         back.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-               core.setScreen(new newEBenefits(core));
+                core.setScreen(new EmployerScreen(core));
                 dispose();
             }
         });
@@ -92,47 +95,49 @@ public class newEPicture implements Screen {
             }
         });
 
+
+
+
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
 
-
     }
 
+        @Override
+        public void show () {
 
-    @Override
-    public void show() {
+        }
 
+        @Override
+        public void render ( float delta){
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            stage.act(Gdx.graphics.getDeltaTime());
+            stage.draw();
+        }
+
+        @Override
+        public void resize ( int width, int height){
+
+        }
+
+        @Override
+        public void pause () {
+
+        }
+
+        @Override
+        public void resume () {
+
+        }
+
+        @Override
+        public void hide () {
+
+        }
+
+        @Override
+        public void dispose () {
+
+        }
     }
 
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
-}

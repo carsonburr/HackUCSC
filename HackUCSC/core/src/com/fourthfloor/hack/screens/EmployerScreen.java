@@ -30,6 +30,7 @@ public class EmployerScreen implements Screen {
     TextButton back;
     TextButton maxsixkdayhours;
     TextButton vacationdays;
+    TextButton setVD;
 
     public EmployerScreen(MainCore mainCore){
         PW = "1234";
@@ -51,6 +52,7 @@ public class EmployerScreen implements Screen {
         back =  new TextButton("Back to main menu", style);
         maxsixkdayhours = new TextButton("Change maximum sick day hours.",style);
         vacationdays = new TextButton("Change number of vacation days",style);
+        setVD = new TextButton("Set number of vacation days", style);
 
         list.setFillParent(true);
         list.add(findEmployeeButton).top().left().width(Gdx.graphics.getWidth() / 6).height(Gdx.graphics.getHeight() / 10);
@@ -62,6 +64,8 @@ public class EmployerScreen implements Screen {
         list.add(maxsixkdayhours).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
         list.row();
         list.add(vacationdays).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
+        list.row();
+        list.add(setVD).top().left().width(Gdx.graphics.getWidth() / 4).height(Gdx.graphics.getHeight() / 10);
 
 
 
@@ -69,6 +73,15 @@ public class EmployerScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 core.setScreen(new FindEmployeeAskScreen(core));
+                dispose();
+
+            }
+        });
+
+        setVD.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new setVD(core));
                 dispose();
 
             }

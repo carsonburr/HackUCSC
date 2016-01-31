@@ -32,6 +32,7 @@ public class EmployeeFound implements Screen {
     Table list;
     TextButton EF;
     TextButton back;
+    TextButton changeSalary;
     Image pic;
 
 
@@ -63,23 +64,35 @@ public class EmployeeFound implements Screen {
         }
 
         back = new TextButton("Back", style);
+        changeSalary = new TextButton("Change salary", style);
+
         list.add(pic).width(96).height(96).align(Align.top);
         list.row();
         list.add(EF).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(back).top().left().width(Gdx.graphics.getWidth()).height(100);
         list.row();
+        list.add(changeSalary).top().left().width(Gdx.graphics.getWidth()).height(100);
 
 
         back.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
                 core.setScreen(new FindEmployeeAskScreen(core));
                 dispose();
 
             }
         });
+
+        changeSalary.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                core.setScreen(new ChangeSalary(core));
+                dispose();
+
+            }
+        });
+
 
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);

@@ -19,9 +19,9 @@ import com.fourthfloor.hack.utils.Database;
 import com.fourthfloor.hack.utils.Employee;
 
 /**
- * Created by Kyle on 1/30/2016.
+ * Created by Kyle on 1/31/2016.
  */
-public class newEPicture implements Screen {
+public class ChangeSalary implements Screen {
     private MainCore core;
     private Stage stage;
     TextField txtInput;
@@ -29,9 +29,8 @@ public class newEPicture implements Screen {
     TextButton enterButton;
     TextButton back;
     TextButton mainmenu;
-    public static String newEPicture;
 
-    public newEPicture (MainCore mainCore) {
+    public ChangeSalary (MainCore mainCore) {
         stage = new Stage();
         this.core = mainCore;
         list = new Table();
@@ -49,15 +48,14 @@ public class newEPicture implements Screen {
         TextField.TextFieldStyle style1 = new TextField.TextFieldStyle();
         style1.font = new BitmapFont(Gdx.files.internal("Arial3.fnt"), Gdx.files.internal("Arial3_0.png"), false);
         style1.fontColor = Color.GRAY;
-        style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"),1,1,1,1));
+        style1.background = new NinePatchDrawable(new NinePatch(new Texture("ListItem.png"), 1, 1, 1, 1));
 
         enterButton = new TextButton("Enter", style);
         back = new TextButton("back", style);
         mainmenu = new TextButton("Main menu", style);
 
-
         txtInput = new TextField("", style1);
-        txtInput.setMessageText("Type in the Employee's picture path here");
+        txtInput.setMessageText("Type in the Employee's salary Here");
         list.add(txtInput).top().left().width(Gdx.graphics.getWidth()).height(Gdx.graphics.getHeight() / 2);
         list.row();
         list.add(enterButton);
@@ -66,28 +64,20 @@ public class newEPicture implements Screen {
         list.row();
         list.add(mainmenu);
 
+
+
         enterButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                newEPicture = txtInput.getText() + ".png";
-                Database.database.add(new Employee(newESalary.newESalary, newEName.newEName, newEBenefits.newEBenefits, newEPicture));
+                String text = txtInput.getText();
+                int newSalary = Integer.parseInt(text);
+                for (int i = 0; i < Database.database.size(); i++) {
+                    if (FindEmployeeAskScreen.EmployeeName.equals(Database.database.get(i).getName())) {
+                        Database.database.get(i).setSalary(newSalary);
+                        Database.database.get(i).addPopup("Your salary has been changed to: " + newSalary);
+                    }
+                }
                 core.setScreen(new EmployerScreen(core));
-                dispose();
-            }
-        });
-
-        back.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-               core.setScreen(new newEBenefits(core));
-                dispose();
-            }
-        });
-
-        mainmenu.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                core.setScreen(new MainMenuScreen(core));
                 dispose();
             }
         });
@@ -95,44 +85,42 @@ public class newEPicture implements Screen {
         Gdx.input.setInputProcessor(stage);
         stage.addActor(list);
 
-
     }
 
+            @Override
+            public void show() {
 
-    @Override
-    public void show() {
+            }
 
-    }
+            @Override
+            public void render(float delta) {
+                Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+                stage.act(Gdx.graphics.getDeltaTime());
+                stage.draw();
+            }
 
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
-    }
+            @Override
+            public void resize(int width, int height) {
 
-    @Override
-    public void resize(int width, int height) {
+            }
 
-    }
+            @Override
+            public void pause() {
 
-    @Override
-    public void pause() {
+            }
 
-    }
+            @Override
+            public void resume() {
 
-    @Override
-    public void resume() {
+            }
 
-    }
+            @Override
+            public void hide() {
 
-    @Override
-    public void hide() {
+            }
 
-    }
+            @Override
+            public void dispose() {
 
-    @Override
-    public void dispose() {
-
-    }
-}
+            }
+        }

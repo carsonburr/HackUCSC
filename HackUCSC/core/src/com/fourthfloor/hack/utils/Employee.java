@@ -32,6 +32,8 @@ public class Employee {
     private double hw;
     //hours worked that day
     public double hwd;
+    //arraylist to determine popup
+    public static ArrayList<String> popup = new ArrayList<String>();
 
 
     //default constructor
@@ -53,7 +55,6 @@ public class Employee {
         salary = x;
         name = y.toUpperCase();
         benefits = k;
-        vD = 0;
         hours = new ArrayList<String>();
         hr = 0;
         shr = 0;
@@ -74,6 +75,14 @@ public class Employee {
         double t = a-b+c-d+e-f+g-h;
         hw = t;
         return hw;
+    }
+    //sets the salary of the employee
+    public void setSalary(int e){
+        salary = e;
+    }
+    //adds a popup message to the arraylist popups
+    public void addPopup(String e){
+        popup.add(e);
     }
     //get hours worked that day
     public double getHWD(){
@@ -96,7 +105,7 @@ public class Employee {
     public double getOVT(){
         return ovt;
     }
-    //calculate ovetime hours
+    //calculate overtime hours
     public double calcOVT(){
         ovt = 41 - hw;
         if(ovt<0){
